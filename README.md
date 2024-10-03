@@ -1,50 +1,97 @@
-# React + TypeScript + Vite
+# CRUD de Clientes 📥
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto é uma aplicação web para o cadastro de clientes, permitindo a entrada de dados pessoais, informações de contato, endereços e dados de cartão de crédito. A aplicação foi desenvolvida utilizando React e TypeScript.
 
-Currently, two official plugins are available:
+## Tecnologias Utilizadas ⚙️
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **React**: Biblioteca JavaScript para construção de interfaces de usuário.
+- **TypeScript**: Superset do JavaScript que adiciona tipagem estática.
+- **CSS**: Para estilização da aplicação.
 
-## Expanding the ESLint configuration
+## Funcionalidades 📋
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Cadastro de dados pessoais (nome, data de nascimento, email, CPF, gênero).
+- Adição de múltiplos números de telefone.
+- Cadastro de endereços de entrega e cobrança.
+- Informações do cartão de crédito, incluindo opção de cartão preferencial.
 
-- Configure the top-level `parserOptions` property like this:
+## Estrutura do Projeto 🗂️
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```plaintext
+cadastro-cliente/
+├── public/
+│   ├── index.html
+├── src/
+│   ├── components/
+│   │   ├── CadastroCliente.tsx
+│   ├── types/
+│   │   ├── index.ts
+│   ├── App.tsx
+│   ├── index.tsx
+├── styles/
+│   ├── style.css
+├── package.json
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Como Rodar o Projeto Frontend 🚀
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+1. Clone o repositório:
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+git clone https://github.com/seu-usuario/cadastro-cliente.git
+cd cadastro-cliente
 ```
+
+2. Instale as dependências:
+
+```bash
+npm install
+```
+
+ou
+
+```bash
+yarn install
+```
+
+3. Inicie a aplicação:
+
+```bash
+npm run dev
+```
+
+ou
+
+```bash
+yarn dev
+```
+
+4. Acesse http://localhost:3000 no seu navegador.
+
+### Como Contribuir 🤝
+
+1. Faça um fork do repositório.
+
+2. Crie uma nova branch para suas modificações:
+
+```bash
+git checkout -b minha-nova-funcionalidade
+```
+
+3. Faça commit das suas alterações:
+
+```bash
+git commit -m 'Adicionando uma nova funcionalidade'
+```
+
+4. Envie suas alterações:
+
+```bash
+git push origin minha-nova-funcionalidade
+```
+
+5. Abra um Pull Request.
+
+### Licença 📝
+
+Este projeto está licenciado sob a MIT License.
