@@ -1,0 +1,80 @@
+/* CadastroCliente.css */
+
+.cadastro-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alinha os cards no topo */
+  flex-direction: column; /* Empilha os cards verticalmente */
+  margin: 2rem; /* Espaçamento externo */
+}
+
+.card {
+  background-color: #ffffff; /* Cor de fundo do card */
+  border: 1px solid #ddd; /* Borda do card */
+  border-radius: 8px; /* Bordas arredondadas */
+  padding: 2rem; /* Espaçamento interno do card */
+  margin-bottom: 1.5rem; /* Espaçamento entre os cards */
+  width: 80%; /* Largura do card */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Sombra do card */
+  display: flex; /* Flexbox para o conteúdo do card */
+  flex-direction: column; /* Coloca os filhos em coluna */
+}
+
+.card h2 {
+  margin-top: 0; /* Remove margem superior do título do card */
+  font-size: 1.5rem; /* Aumenta o tamanho da fonte do título */
+  color: #333; /* Cor do título */
+}
+
+.input-row {
+  display: flex; /* Usar flexbox para alinhar inputs */
+  justify-content: space-between; /* Espaço igual entre os inputs */
+  margin-bottom: 2rem; /* Espaço inferior entre as linhas de inputs */
+}
+
+.input-row .input-group {
+  flex: 1; /* Os grupos de inputs ocuparão o mesmo espaço */
+  margin-right: 1rem; /* Espaçamento entre os grupos de inputs */
+}
+
+/* Remove margem do último input do grupo */
+.input-row .input-group:last-child {
+  margin-right: 0;
+}
+
+.input-group label {
+  display: block; /* Faz o label ocupar a linha inteira */
+  margin-bottom: 0.5rem; /* Espaço entre o label e o input */
+  font-weight: bold; /* Torna o texto do label em negrito */
+  color: #555; /* Cor do texto do label */
+}
+
+.input-group input,
+.input-group select {
+  width: 100%; /* Ocupa toda a largura disponível */
+  padding: 0.75rem; /* Espaçamento interno */
+  border: 1px solid #ccc; /* Borda do input */
+  border-radius: 4px; /* Bordas arredondadas */
+  transition: border-color 0.3s; /* Transição de cor da borda */
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  border-color: #007bff; /* Cor da borda ao focar */
+  outline: none; /* Remove o contorno padrão */
+}
+
+.card-button {
+  background-color: #007bff; /* Cor do botão */
+  color: white; /* Cor do texto do botão */
+  border: none; /* Remove borda do botão */
+  padding: 0.75rem 1.5rem; /* Espaçamento interno do botão */
+  border-radius: 4px; /* Bordas arredondadas do botão */
+  cursor: pointer; /* Muda o cursor para indicar que é clicável */
+  transition: background-color 0.3s; /* Animação de transição */
+  align-self: flex-start; /* Alinha o botão à esquerda dentro do card */
+}
+
+.card-button:hover {
+  background-color: #0056b3; /* Cor do botão ao passar o mouse */
+}
