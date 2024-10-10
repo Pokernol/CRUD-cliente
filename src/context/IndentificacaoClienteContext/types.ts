@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { TelefoneType } from '../types';
+import { TelefoneType } from '../TelefoneContext/types';
 
 export type EnderecoType = {
   cep: string;
