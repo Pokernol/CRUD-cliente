@@ -117,8 +117,6 @@ export const IndentificacaoClienteProvider: React.FC<{
       enderecoEntrega,
       enderecoCobranca,
       cartao,
-      clearForm,
-      fillForm,
     ]
   );
 

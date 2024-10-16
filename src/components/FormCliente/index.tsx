@@ -2,6 +2,8 @@ import React, { FormEvent } from 'react';
 import { useIndentificacaoClienteContext } from '../../context/IndentificacaoClienteContext';
 import { useTelefoneContext } from '../../context/TelefoneContext';
 import FormClienteFooterButtons from './FormClienteFooterButtons';
+import FormEnderecoCobranca from './FormEnderecoCobranca';
+import FormEnderecoEntrega from './FormEnderecoEntrega';
 import FormIndentificacaoCliente from './FormIndentificacaoCliente';
 import FormTelefone from './FormTelefone';
 
@@ -22,11 +24,13 @@ const FormCliente: React.FC = () => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="container-fluid mt-4">
       <div className="row justify-content-center">
         <div className="col-md-10">
           <form onSubmit={handleSubmit}>
             <FormIndentificacaoCliente />
+            <FormEnderecoEntrega />
+            <FormEnderecoCobranca />
             <FormTelefone />
             <FormClienteFooterButtons />
           </form>

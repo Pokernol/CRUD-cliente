@@ -1,0 +1,31 @@
+import { Dispatch, SetStateAction } from 'react';
+import { EnderecoType } from '../IndentificacaoClienteContext/types';
+
+export type EnderecoCobrancaContextType = {
+  id: string;
+  setId: Dispatch<SetStateAction<string>>;
+  tipoLogradouroCobranca: string;
+  setTipoLogradouroCobranca: Dispatch<SetStateAction<string>>;
+  logradouroCobranca: string;
+  setLogradouroCobranca: Dispatch<SetStateAction<string>>;
+  numeroCobranca: string;
+  setNumeroCobranca: Dispatch<SetStateAction<string>>;
+  complementoCobranca: string;
+  setComplementoCobranca: Dispatch<SetStateAction<string>>;
+  bairroCobranca: string;
+  setBairroCobranca: Dispatch<SetStateAction<string>>;
+  cidadeCobranca: string;
+  setCidadeCobranca: Dispatch<SetStateAction<string>>;
+  estadoCobranca: string;
+  setEstadoCobranca: Dispatch<SetStateAction<string>>;
+  cepCobranca: string;
+  setCepCobranca: Dispatch<SetStateAction<string>>;
+  paisCobranca: string;
+  setPaisCobranca: Dispatch<SetStateAction<string>>;
+  copiarEnderecoEntrega: boolean;
+  setCopiarEnderecoEntrega: Dispatch<SetStateAction<boolean>>;
+  clearForm: () => void;
+  fillForm: (data: EnderecoType) => void;
+  validateEnderecoCobranca: (data: EnderecoType) => boolean;
+  handleSalvarEnderecoCobranca: (data: EnderecoType) => void;
+};

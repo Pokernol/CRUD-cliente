@@ -1,7 +1,7 @@
 import React from 'react';
 import { useIndentificacaoClienteContext } from '../../../context/IndentificacaoClienteContext';
 
-const IdentificacaoCliente: React.FC = () => {
+const FormIdentificacaoCliente: React.FC = () => {
   const {
     nome,
     setNome,
@@ -29,29 +29,13 @@ const IdentificacaoCliente: React.FC = () => {
               className="form-control"
               id="nome"
               name="nome"
+              placeholder="Digite seu nome"
               value={nome}
               onChange={(e: { target: { value: string } }) =>
                 setNome(e.target.value)
               }
             />
           </div>
-          <div className="col-md-6">
-            <label htmlFor="dataNascimento" className="form-label">
-              Data de Nascimento
-            </label>
-            <input
-              type="date"
-              className="form-control"
-              id="dataNascimento"
-              name="dataNascimento"
-              value={dataNascimento}
-              onChange={(e: { target: { value: string } }) =>
-                setDataNascimento(e.target.value)
-              }
-            />
-          </div>
-        </div>
-        <div className="row mb-3">
           <div className="col-md-6">
             <label htmlFor="email" className="form-label">
               Email
@@ -61,13 +45,16 @@ const IdentificacaoCliente: React.FC = () => {
               className="form-control"
               id="email"
               name="email"
+              placeholder="Digite seu email"
               value={email}
               onChange={(e: { target: { value: string } }) =>
                 setEmail(e.target.value)
               }
             />
           </div>
-          <div className="col-md-6">
+        </div>
+        <div className="row mb-3">
+          <div className="col-md-4">
             <label htmlFor="cpf" className="form-label">
               CPF
             </label>
@@ -76,13 +63,30 @@ const IdentificacaoCliente: React.FC = () => {
               className="form-control"
               id="cpf"
               name="cpf"
+              placeholder="Digite seu CPF"
               value={cpf}
               onChange={(e: { target: { value: string } }) =>
                 setCpf(e.target.value)
               }
             />
           </div>
-          <div className="col-md-6 mt-3">
+          <div className="col-md-4">
+            <label htmlFor="dataNascimento" className="form-label">
+              Data de Nascimento
+            </label>
+            <input
+              type="date"
+              className="form-control"
+              id="dataNascimento"
+              name="dataNascimento"
+              placeholder="Selecione sua data de nascimento"
+              value={dataNascimento}
+              onChange={(e: { target: { value: string } }) =>
+                setDataNascimento(e.target.value)
+              }
+            />
+          </div>
+          <div className="col-md-4">
             <label htmlFor="genero" className="form-label">
               Gênero
             </label>
@@ -106,4 +110,5 @@ const IdentificacaoCliente: React.FC = () => {
     </div>
   );
 };
-export default IdentificacaoCliente;
+
+export default FormIdentificacaoCliente;

@@ -1,5 +1,5 @@
 import React from 'react';
-import ListarClientes from '../../components/listar-clientes';
+import ListarClientes from '../../components/ListarClientes';
 
 const ListarClientesProvider: React.FC = () => <ListarClientes />;
 

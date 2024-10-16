@@ -30,20 +30,26 @@ export const TelefoneProvider: React.FC<{ children: ReactNode }> = ({
     setIndexExcluir(-1);
   }, [id, tipoTelefone, ddd, numero, indexExcluir]);
 
-  const handleSalvarTelefone = useCallback((data: TelefoneType) => {
-    if (!data.tipoTelefone || !data.ddd || !data.numero) {
-      toast.error('Preencha todos os campos do telefone!');
-      return;
-    }
-    setTelefones((prevTelefones) => {
-      return [...prevTelefones, data];
-    });
-    toast.success('Telefone salvo com sucesso!');
-  }, []);
+  const fillForm = useCallback(
+    (data: TelefoneType[]) => {
+      setTelefones(data);
+    },
+    [telefones]
+  );
 
-  const fillForm = useCallback((data: TelefoneType[]) => {
-    setTelefones(data);
-  }, []);
+  const handleSalvarTelefone = useCallback(
+    (data: TelefoneType) => {
+      if (!data.tipoTelefone || !data.ddd || !data.numero) {
+        toast.error('Preencha todos os campos do telefone!');
+        return;
+      }
+      setTelefones((prevTelefones) => {
+        return [...prevTelefones, data];
+      });
+      toast.success('Telefone salvo com sucesso!');
+    },
+    [telefones]
+  );
 
   const handleExcluirTelefone = useCallback(
     (indexLista: number) => {
@@ -52,7 +58,7 @@ export const TelefoneProvider: React.FC<{ children: ReactNode }> = ({
       });
       toast.success(`Telefone excluído com sucesso!`);
     },
-    [setTelefones]
+    [telefones]
   );
 
   const values = useMemo(
@@ -70,22 +76,11 @@ export const TelefoneProvider: React.FC<{ children: ReactNode }> = ({
       indexExcluir,
       setIndexExcluir,
       clearForm,
-      handleSalvarTelefone,
       fillForm,
+      handleSalvarTelefone,
       handleExcluirTelefone,
     }),
-    [
-      id,
-      tipoTelefone,
-      ddd,
-      numero,
-      telefones,
-      indexExcluir,
-      clearForm,
-      handleSalvarTelefone,
-      fillForm,
-      handleExcluirTelefone,
-    ]
+    [id, tipoTelefone, ddd, numero, telefones, indexExcluir]
   );
 
   return (

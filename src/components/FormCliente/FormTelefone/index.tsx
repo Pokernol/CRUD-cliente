@@ -2,7 +2,7 @@ import React from 'react';
 import { useTelefoneContext } from '../../../context/TelefoneContext';
 import FormTelefoneFooterButtons from '../FormTelefoneFooterButtons';
 import TabelaTelefones from '../TabelaTelefones';
-const Telefone: React.FC = () => {
+const FormTelefone: React.FC = () => {
   const { tipoTelefone, setTipoTelefone, ddd, setDdd, numero, setNumero } =
     useTelefoneContext();
 
@@ -25,8 +25,8 @@ const Telefone: React.FC = () => {
               }
             >
               <option value="">Selecione</option>
-              <option value="celular">Celular</option>
-              <option value="fixo">Fixo</option>
+              <option value="Celular">Celular</option>
+              <option value="Fixo">Fixo</option>
             </select>
           </div>
           <div className="col-md-2">
@@ -69,4 +69,4 @@ const Telefone: React.FC = () => {
   );
 };
 
-export default Telefone;
+export default FormTelefone;
