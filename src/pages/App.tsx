@@ -1,3 +1,4 @@
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -7,21 +8,28 @@ import HomeProvider from './home';
 import ListarClientesProvider from './listar-clientes';
 
 function App() {
+  const queryClient = new QueryClient();
+
   return (
-    <Router>
-      <Navbar />
-      <div className="container-fluid">
-        <Routes>
-          <Route path="/" element={<HomeProvider />} />
-          <Route
-            path="/cadastro-cliente"
-            element={<CadastroClienteProvider />}
-          />
-          <Route path="/listar-clientes" element={<ListarClientesProvider />} />
-        </Routes>
-      </div>
-      <ToastContainer position="bottom-right" />
-    </Router>
+    <QueryClientProvider client={queryClient}>
+      <Router>
+        <Navbar />
+        <div className="container-fluid">
+          <Routes>
+            <Route path="/" element={<HomeProvider />} />
+            <Route
+              path="/cadastro-cliente"
+              element={<CadastroClienteProvider />}
+            />
+            <Route
+              path="/listar-clientes"
+              element={<ListarClientesProvider />}
+            />
+          </Routes>
+        </div>
+        <ToastContainer position="bottom-right" />
+      </Router>
+    </QueryClientProvider>
   );
 }
 

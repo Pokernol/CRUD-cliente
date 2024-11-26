@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import { useFetchClientes } from './hocks/useFetchClientes';
 
 interface Cliente {
   nome: string;
@@ -6,44 +7,15 @@ interface Cliente {
   dataNascimento: string;
   ranking: number;
   genero: string;
-  telefone: string;
+  telefones: any[];
 }
 
 const ListarClientes: React.FC = () => {
-  const clientes: Cliente[] = [
-    {
-      nome: "João Silva",
-      email: "joao.silva@example.com",
-      dataNascimento: "1985-03-25",
-      ranking: 5,
-      genero: "Masculino",
-      telefone: "(11) 91234-5678",
-    },
-    {
-      nome: "Maria Oliveira",
-      email: "maria.oliveira@example.com",
-      dataNascimento: "1990-07-14",
-      ranking: 4,
-      genero: "Feminino",
-      telefone: "(21) 99876-5432",
-    },
-    {
-      nome: "Carlos Pereira",
-      email: "carlos.pereira@example.com",
-      dataNascimento: "1982-11-02",
-      ranking: 3,
-      genero: "Masculino",
-      telefone: "(31) 98765-4321",
-    },
-    {
-      nome: "Ana Costa",
-      email: "ana.costa@example.com",
-      dataNascimento: "1995-09-20",
-      ranking: 2,
-      genero: "Feminino",
-      telefone: "(41) 97654-3210",
-    },
-  ];
+  const { data } = useFetchClientes();
+
+  const handleExibirTelefone = (telefone: any) => {
+    return telefone.ddd + ' ' + telefone.numero;
+  };
 
   return (
     <div className="container mt-4">
@@ -60,14 +32,18 @@ const ListarClientes: React.FC = () => {
           </tr>
         </thead>
         <tbody>
-          {clientes.map((cliente, index) => (
+          {data?.map((cliente: Cliente, index: number) => (
             <tr key={index} className="text-center">
               <td>{cliente.nome}</td>
               <td>{cliente.email}</td>
               <td>{cliente.dataNascimento}</td>
               <td>{cliente.ranking}</td>
               <td>{cliente.genero}</td>
-              <td>{cliente.telefone}</td>
+              <td>
+                {cliente.telefones.length > 0
+                  ? handleExibirTelefone(cliente.telefones[0])
+                  : '-'}
+              </td>
             </tr>
           ))}
         </tbody>

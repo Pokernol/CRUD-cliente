@@ -23,6 +23,8 @@ const FormEnderecoEntrega: React.FC = () => {
     setCep,
     pais,
     setPais,
+    observacao,
+    setObservacao,
   } = useEnderecoEntregaContext();
 
   const {
@@ -35,6 +37,7 @@ const FormEnderecoEntrega: React.FC = () => {
     setEstadoCobranca,
     setCepCobranca,
     setPaisCobranca,
+    setObservacaoCobranca,
     setCopiarEnderecoEntrega,
     clearForm: clearFormCobranca,
   } = useEnderecoCobrancaContext();
@@ -49,6 +52,7 @@ const FormEnderecoEntrega: React.FC = () => {
     setEstadoCobranca(estado);
     setCepCobranca(cep);
     setPaisCobranca(pais);
+    setObservacaoCobranca(observacao);
   };
 
   const isValueValid = (value: string) => {
@@ -188,6 +192,21 @@ const FormEnderecoEntrega: React.FC = () => {
               placeholder="Apto 202"
               value={complemento}
               onChange={(e) => setComplemento(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="row mb-3">
+          <div className="col-md-12">
+            <label htmlFor="observacao" className="form-label">
+              Observação
+            </label>
+            <textarea
+              id="observacao"
+              className="form-control"
+              placeholder="Digite observações sobre o endereço"
+              value={observacao}
+              maxLength={100}
+              onChange={(e) => setObservacao(e.target.value)}
             />
           </div>
         </div>

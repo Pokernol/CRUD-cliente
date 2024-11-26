@@ -21,7 +21,9 @@ export type TelefoneContextType = {
   indexExcluir: number;
   setIndexExcluir: Dispatch<SetStateAction<number>>;
   clearForm: () => void;
-  handleSalvarTelefone: (data: TelefoneType) => void;
   fillForm: (data: TelefoneType[]) => void;
+  handleSalvarTelefone: (data: TelefoneType) => void;
   handleExcluirTelefone: (indexLista: number) => void;
+  validarTelefone: (data: TelefoneType) => boolean;
+  validarListaTelefones: () => boolean;
 };

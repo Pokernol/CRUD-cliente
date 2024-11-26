@@ -6,12 +6,8 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import {
-  CartaoType,
-  ClienteType,
-  EnderecoType,
-  IndentificacaoClienteContextType,
-} from './types';
+import { toast } from 'react-toastify';
+import { ClienteType, IndentificacaoClienteContextType } from './types';
 
 const IndentificacaoClienteContext = createContext(
   {} as IndentificacaoClienteContextType
@@ -29,13 +25,6 @@ export const IndentificacaoClienteProvider: React.FC<{
   const [email, setEmail] = useState<string>('');
   const [cpf, setCpf] = useState<string>('');
   const [genero, setGenero] = useState<string>('');
-  const [enderecoEntrega, setEnderecoEntrega] = useState<EnderecoType>(
-    {} as EnderecoType
-  );
-  const [enderecoCobranca, setEnderecoCobranca] = useState<EnderecoType>(
-    {} as EnderecoType
-  );
-  const [cartao, setCartao] = useState({} as CartaoType);
 
   const clearForm = useCallback(() => {
     setId('');
@@ -44,20 +33,7 @@ export const IndentificacaoClienteProvider: React.FC<{
     setEmail('');
     setCpf('');
     setGenero('');
-    setEnderecoEntrega({} as EnderecoType);
-    setEnderecoCobranca({} as EnderecoType);
-    setCartao({} as CartaoType);
-  }, [
-    id,
-    nome,
-    dataNascimento,
-    email,
-    cpf,
-    genero,
-    enderecoEntrega,
-    enderecoCobranca,
-    cartao,
-  ]);
+  }, [id, nome, dataNascimento, email, cpf, genero]);
 
   const fillForm = useCallback(
     (data: ClienteType) => {
@@ -67,22 +43,19 @@ export const IndentificacaoClienteProvider: React.FC<{
       setEmail(data.email);
       setCpf(data.cpf);
       setGenero(data.genero);
-      setEnderecoEntrega(data.enderecoEntrega);
-      setEnderecoCobranca(data.enderecoCobranca);
-      setCartao(data.cartao);
     },
-    [
-      id,
-      nome,
-      dataNascimento,
-      email,
-      cpf,
-      genero,
-      enderecoEntrega,
-      enderecoCobranca,
-      cartao,
-    ]
+    [id, nome, dataNascimento, email, cpf, genero]
   );
+
+  const validarIndentificacaoCliente = () => {
+    if (!nome || !dataNascimento || !email || !cpf || !genero) {
+      toast.error(
+        'Para cadastro deve se ter todos os campos obrigatórios de dados pessoais preenchidos!'
+      );
+      return true;
+    }
+    return false;
+  };
 
   const values = useMemo(
     () => ({
@@ -98,26 +71,11 @@ export const IndentificacaoClienteProvider: React.FC<{
       setCpf,
       genero,
       setGenero,
-      enderecoEntrega,
-      setEnderecoEntrega,
-      enderecoCobranca,
-      setEnderecoCobranca,
-      cartao,
-      setCartao,
       clearForm,
       fillForm,
+      validarIndentificacaoCliente,
     }),
-    [
-      id,
-      nome,
-      dataNascimento,
-      email,
-      cpf,
-      genero,
-      enderecoEntrega,
-      enderecoCobranca,
-      cartao,
-    ]
+    [id, nome, dataNascimento, email, cpf, genero]
   );
 
   return (

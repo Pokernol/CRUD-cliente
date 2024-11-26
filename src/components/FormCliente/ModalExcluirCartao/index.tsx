@@ -1,15 +1,15 @@
 import React, { useCallback } from 'react';
-import { useTelefoneContext } from '../../../context/TelefoneContext';
+import { useCartaoContext } from '../../../context/CartaoContext';
 
-const ModalExcluirTelefone: React.FC = () => {
-  const { handleExcluirTelefone, indexExcluir } = useTelefoneContext();
+const ModalExcluirCartao: React.FC = () => {
+  const { handleExcluirCartao, indexExcluir } = useCartaoContext();
   const handleExcluir = useCallback(() => {
-    handleExcluirTelefone(indexExcluir);
+    handleExcluirCartao(indexExcluir);
   }, [indexExcluir]);
   return (
     <div
       className="modal"
-      id="modalExcluirTelefone"
+      id="modalExcluirCartao"
       tabIndex={-1}
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
@@ -17,7 +17,7 @@ const ModalExcluirTelefone: React.FC = () => {
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title">Excluir Telefone</h5>
+            <h5 className="modal-title">Excluir Cartao</h5>
             <button
               type="button"
               className="btn-close"
@@ -26,7 +26,7 @@ const ModalExcluirTelefone: React.FC = () => {
             ></button>
           </div>
           <div className="modal-body">
-            <p>Você tem certeza que deseja excluir este telefone?</p>
+            <p>Você tem certeza que deseja excluir este cartao?</p>
           </div>
           <div className="modal-footer">
             <button
@@ -50,4 +50,4 @@ const ModalExcluirTelefone: React.FC = () => {
     </div>
   );
 };
-export default ModalExcluirTelefone;
+export default ModalExcluirCartao;

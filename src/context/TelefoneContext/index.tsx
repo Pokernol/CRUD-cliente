@@ -39,13 +39,11 @@ export const TelefoneProvider: React.FC<{ children: ReactNode }> = ({
 
   const handleSalvarTelefone = useCallback(
     (data: TelefoneType) => {
-      if (!data.tipoTelefone || !data.ddd || !data.numero) {
-        toast.error('Preencha todos os campos do telefone!');
-        return;
-      }
+      if (validarTelefone(data)) return;
       setTelefones((prevTelefones) => {
         return [...prevTelefones, data];
       });
+      clearForm();
       toast.success('Telefone salvo com sucesso!');
     },
     [telefones]
@@ -60,6 +58,43 @@ export const TelefoneProvider: React.FC<{ children: ReactNode }> = ({
     },
     [telefones]
   );
+
+  const validarTelefone = (data: TelefoneType) => {
+    if (!data.tipoTelefone || !data.ddd || !data.numero) {
+      toast.error('Preencha todos os campos do telefone!');
+      return true;
+    }
+
+    if (data.ddd.length !== 2) {
+      toast.error('DDD deve ter 2 dígitos!');
+      return true;
+    }
+
+    if (data.tipoTelefone == 'CELULAR') {
+      if (data.numero.length !== 11) {
+        toast.error('Celular deve ter 9 dígitos!');
+        return true;
+      }
+    }
+
+    if (data.tipoTelefone == 'TELEFONE') {
+      if (data.numero.length !== 9) {
+        toast.error('Telefone deve ter 8 dígitos!');
+        return true;
+      }
+    }
+    return false;
+  };
+
+  const validarListaTelefones = () => {
+    if (telefones.length === 0) {
+      toast.error(
+        'Para cadastro deve se ter pelo menos um telefone adicionado!'
+      );
+      return true;
+    }
+    return false;
+  };
 
   const values = useMemo(
     () => ({
@@ -79,6 +114,8 @@ export const TelefoneProvider: React.FC<{ children: ReactNode }> = ({
       fillForm,
       handleSalvarTelefone,
       handleExcluirTelefone,
+      validarTelefone,
+      validarListaTelefones,
     }),
     [id, tipoTelefone, ddd, numero, telefones, indexExcluir]
   );

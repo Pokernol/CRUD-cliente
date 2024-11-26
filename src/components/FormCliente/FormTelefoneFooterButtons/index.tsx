@@ -21,8 +21,7 @@ const FormTelefoneFooterButtons: React.FC = () => {
 
   const handleClick = useCallback(() => {
     handleSalvarTelefone(objectToSave);
-    TelefoneClearForm();
-  }, [handleSalvarTelefone, TelefoneClearForm, objectToSave]);
+  }, [handleSalvarTelefone, objectToSave]);
 
   return (
     <div className="d-flex justify-content-end gap-3">
@@ -31,10 +30,10 @@ const FormTelefoneFooterButtons: React.FC = () => {
         className="btn btn-secondary ml-2"
         onClick={TelefoneClearForm}
       >
-        Limpar Formulário
+        Limpar Campos
       </button>
       <button type="button" onClick={handleClick} className="btn btn-primary">
-        Cadastrar
+        Adicionar
       </button>
     </div>
   );

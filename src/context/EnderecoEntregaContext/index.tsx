@@ -26,6 +26,7 @@ export const EnderecoEntregaProvider: React.FC<{ children: ReactNode }> = ({
   const [estado, setEstado] = useState<string>('');
   const [cep, setCep] = useState<string>('');
   const [pais, setPais] = useState<string>('');
+  const [observacao, setObservacao] = useState<string>('');
 
   const clearForm = useCallback(() => {
     setId('');
@@ -38,6 +39,7 @@ export const EnderecoEntregaProvider: React.FC<{ children: ReactNode }> = ({
     setEstado('');
     setCep('');
     setPais('');
+    setObservacao('');
   }, [
     id,
     tipoLogradouro,
@@ -49,6 +51,7 @@ export const EnderecoEntregaProvider: React.FC<{ children: ReactNode }> = ({
     estado,
     cep,
     pais,
+    observacao,
   ]);
 
   const fillForm = useCallback(
@@ -63,6 +66,7 @@ export const EnderecoEntregaProvider: React.FC<{ children: ReactNode }> = ({
       setEstado(data.estado);
       setCep(data.cep);
       setPais(data.pais);
+      setObservacao(data.observacao || '');
     },
     [
       id,
@@ -75,28 +79,32 @@ export const EnderecoEntregaProvider: React.FC<{ children: ReactNode }> = ({
       estado,
       cep,
       pais,
+      observacao,
     ]
   );
 
-  const validateEndereco = (data: EnderecoType) => {
+  const validateEndereco = () => {
     if (
-      !data.tipoLogradouro ||
-      !data.logradouro ||
-      !data.numero ||
-      !data.bairro ||
-      !data.cidade ||
-      !data.estado ||
-      !data.cep ||
-      !data.pais
+      !tipoLogradouro ||
+      !logradouro ||
+      !numero ||
+      !bairro ||
+      !cidade ||
+      !estado ||
+      !cep ||
+      !pais
     ) {
+      toast.error(
+        'Para cadastro deve se ter todos os campos obrigatórios de endereço de entrega preenchidos!'
+      );
       return false;
     }
     return true;
   };
 
   const handleSalvarEndereco = (objectToSave: EnderecoType) => {
-    if (objectToSave && validateEndereco(objectToSave)) {
-      toast.error('Preencha todos os campos do endereço!');
+    if (objectToSave && validateEndereco()) {
+      toast.error('Preencha todos os campos do endereço de entrega!');
       return;
     }
   };
@@ -123,6 +131,8 @@ export const EnderecoEntregaProvider: React.FC<{ children: ReactNode }> = ({
       setCep,
       pais,
       setPais,
+      observacao,
+      setObservacao,
       clearForm,
       fillForm,
       validateEndereco,
@@ -139,6 +149,7 @@ export const EnderecoEntregaProvider: React.FC<{ children: ReactNode }> = ({
       estado,
       cep,
       pais,
+      observacao,
     ]
   );
 

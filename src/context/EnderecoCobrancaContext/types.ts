@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { EnderecoType } from '../IndentificacaoClienteContext/types';
+import { EnderecoType } from '../EnderecoEntregaContext/types';
 
 export type EnderecoCobrancaContextType = {
   id: string;
@@ -22,6 +22,8 @@ export type EnderecoCobrancaContextType = {
   setCepCobranca: Dispatch<SetStateAction<string>>;
   paisCobranca: string;
   setPaisCobranca: Dispatch<SetStateAction<string>>;
+  observacaoCobranca: string;
+  setObservacaoCobranca: Dispatch<SetStateAction<string>>;
   copiarEnderecoEntrega: boolean;
   setCopiarEnderecoEntrega: Dispatch<SetStateAction<boolean>>;
   clearForm: () => void;

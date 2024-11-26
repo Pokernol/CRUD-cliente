@@ -1,10 +1,16 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import InputMask from 'react-input-mask';
 import { useTelefoneContext } from '../../../context/TelefoneContext';
 import FormTelefoneFooterButtons from '../FormTelefoneFooterButtons';
 import TabelaTelefones from '../TabelaTelefones';
+
 const FormTelefone: React.FC = () => {
   const { tipoTelefone, setTipoTelefone, ddd, setDdd, numero, setNumero } =
     useTelefoneContext();
+
+  const handleTipoTelefoneChange = useMemo(() => {
+    return tipoTelefone === 'CELULAR' ? '9 9999-9999' : '9999-9999';
+  }, [tipoTelefone]);
 
   return (
     <div className="card mb-4">
@@ -25,19 +31,22 @@ const FormTelefone: React.FC = () => {
               }
             >
               <option value="">Selecione</option>
-              <option value="Celular">Celular</option>
-              <option value="Fixo">Fixo</option>
+              <option value="CELULAR">Celular</option>
+              <option value="TELEFONE">Telefone</option>
             </select>
           </div>
           <div className="col-md-2">
             <label htmlFor={`ddd`} className="form-label">
               DDD
             </label>
-            <input
+            <InputMask
+              placeholder="99"
               type="text"
               className="form-control"
               id={`ddd`}
               name="ddd"
+              mask="99"
+              maskChar={null}
               value={ddd}
               onChange={(e: { target: { value: string } }) =>
                 setDdd(e.target.value)
@@ -48,11 +57,14 @@ const FormTelefone: React.FC = () => {
             <label htmlFor={`numero`} className="form-label">
               Número
             </label>
-            <input
+            <InputMask
+              placeholder={handleTipoTelefoneChange}
               type="text"
               className="form-control"
               id={`numero`}
               name="numero"
+              mask={handleTipoTelefoneChange}
+              maskChar={null}
               value={numero}
               onChange={(e: { target: { value: string } }) =>
                 setNumero(e.target.value)

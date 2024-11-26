@@ -8,7 +8,6 @@ const TabelaTelefones: React.FC = () => {
   const handleExcluir = (index: number) => {
     setIndexExcluir(index);
   };
-
   return (
     <div className="d-flex justify-content-center">
       {telefones.length <= 0 ? (

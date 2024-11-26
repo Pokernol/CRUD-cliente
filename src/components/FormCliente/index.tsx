@@ -1,6 +1,7 @@
 import React, { FormEvent } from 'react';
 import { useIndentificacaoClienteContext } from '../../context/IndentificacaoClienteContext';
 import { useTelefoneContext } from '../../context/TelefoneContext';
+import FormCartaoCredito from './FormCartaoCredito/Index';
 import FormClienteFooterButtons from './FormClienteFooterButtons';
 import FormEnderecoCobranca from './FormEnderecoCobranca';
 import FormEnderecoEntrega from './FormEnderecoEntrega';
@@ -32,6 +33,7 @@ const FormCliente: React.FC = () => {
             <FormEnderecoEntrega />
             <FormEnderecoCobranca />
             <FormTelefone />
+            <FormCartaoCredito />
             <FormClienteFooterButtons />
           </form>
         </div>

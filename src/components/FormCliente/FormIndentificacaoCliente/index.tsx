@@ -1,4 +1,5 @@
 import React from 'react';
+import InputMask from 'react-input-mask';
 import { useIndentificacaoClienteContext } from '../../../context/IndentificacaoClienteContext';
 
 const FormIdentificacaoCliente: React.FC = () => {
@@ -58,12 +59,13 @@ const FormIdentificacaoCliente: React.FC = () => {
             <label htmlFor="cpf" className="form-label">
               CPF
             </label>
-            <input
+            <InputMask
               type="text"
               className="form-control"
               id="cpf"
               name="cpf"
               placeholder="Digite seu CPF"
+              mask="999.999.999-99"
               value={cpf}
               onChange={(e: { target: { value: string } }) =>
                 setCpf(e.target.value)
@@ -102,7 +104,7 @@ const FormIdentificacaoCliente: React.FC = () => {
               <option value="">Selecione</option>
               <option value="masculino">Masculino</option>
               <option value="feminino">Feminino</option>
-              <option value="outro">Outro</option>
+              <option value="outros">Outros</option>
             </select>
           </div>
         </div>

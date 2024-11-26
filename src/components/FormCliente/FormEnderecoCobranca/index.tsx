@@ -22,6 +22,8 @@ const FormEnderecoCobranca: React.FC = () => {
     setCepCobranca,
     paisCobranca,
     setPaisCobranca,
+    observacaoCobranca,
+    setObservacaoCobranca,
   } = useEnderecoCobrancaContext();
 
   const isValueValid = (value: string) => {
@@ -31,7 +33,7 @@ const FormEnderecoCobranca: React.FC = () => {
 
   return (
     <div className="card mb-4">
-      <div className="card-header">Endereço de Entrega</div>
+      <div className="card-header">Endereço de Cobrança</div>
       <div className="card-body">
         <div className="row mb-3">
           <div className="col-md-2">
@@ -161,6 +163,21 @@ const FormEnderecoCobranca: React.FC = () => {
               placeholder="Apto 202"
               value={complementoCobranca}
               onChange={(e) => setComplementoCobranca(e.target.value)}
+            />
+          </div>
+        </div>
+        <div className="row mb-3">
+          <div className="col-md-12">
+            <label htmlFor="observacao" className="form-label">
+              Observações
+            </label>
+            <textarea
+              id="observacao"
+              className="form-control"
+              placeholder="Digite observações sobre o endereço"
+              value={observacaoCobranca}
+              maxLength={100}
+              onChange={(e) => setObservacaoCobranca(e.target.value)}
             />
           </div>
         </div>

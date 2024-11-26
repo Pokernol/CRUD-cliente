@@ -1,5 +1,6 @@
 import React from 'react';
 import FormCliente from '../../components/FormCliente';
+import { CartaoProvider } from '../../context/CartaoContext';
 import { EnderecoCobrancaProvider } from '../../context/EnderecoCobrancaContext';
 import { EnderecoEntregaProvider } from '../../context/EnderecoEntregaContext';
 import { IndentificacaoClienteProvider } from '../../context/IndentificacaoClienteContext';
@@ -10,7 +11,9 @@ const CadastroClienteProvider: React.FC = () => (
     <EnderecoEntregaProvider>
       <EnderecoCobrancaProvider>
         <TelefoneProvider>
-          <FormCliente />
+          <CartaoProvider>
+            <FormCliente />
+          </CartaoProvider>
         </TelefoneProvider>
       </EnderecoCobrancaProvider>
     </EnderecoEntregaProvider>

@@ -11,6 +11,7 @@ export type EnderecoType = {
   estado: string;
   cep: string;
   pais: string;
+  observacao?: string;
   copiarEnderecoEntrega?: boolean;
 };
 
@@ -35,8 +36,10 @@ export type EnderecoEntregaContextType = {
   setCep: Dispatch<SetStateAction<string>>;
   pais: string;
   setPais: Dispatch<SetStateAction<string>>;
+  observacao: string;
+  setObservacao: Dispatch<SetStateAction<string>>;
   clearForm: () => void;
   fillForm: (data: EnderecoType) => void;
-  validateEndereco: (data: EnderecoType) => boolean;
+  validateEndereco: () => boolean;
   handleSalvarEndereco: (data: EnderecoType) => void;
 };

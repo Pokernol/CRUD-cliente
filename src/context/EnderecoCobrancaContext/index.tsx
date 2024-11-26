@@ -31,6 +31,7 @@ export const EnderecoCobrancaProvider: React.FC<{ children: ReactNode }> = ({
   const [estadoCobranca, setEstadoCobranca] = useState<string>('');
   const [cepCobranca, setCepCobranca] = useState<string>('');
   const [paisCobranca, setPaisCobranca] = useState<string>('');
+  const [observacaoCobranca, setObservacaoCobranca] = useState<string>('');
   const [copiarEnderecoEntrega, setCopiarEnderecoEntrega] =
     useState<boolean>(false);
 
@@ -45,6 +46,7 @@ export const EnderecoCobrancaProvider: React.FC<{ children: ReactNode }> = ({
     setEstadoCobranca('');
     setCepCobranca('');
     setPaisCobranca('');
+    setObservacaoCobranca('');
     setCopiarEnderecoEntrega(false);
   }, [
     id,
@@ -57,6 +59,7 @@ export const EnderecoCobrancaProvider: React.FC<{ children: ReactNode }> = ({
     estadoCobranca,
     cepCobranca,
     paisCobranca,
+    observacaoCobranca,
     copiarEnderecoEntrega,
   ]);
 
@@ -72,6 +75,7 @@ export const EnderecoCobrancaProvider: React.FC<{ children: ReactNode }> = ({
       setEstadoCobranca(data.estado);
       setCepCobranca(data.cep);
       setPaisCobranca(data.pais);
+      setObservacaoCobranca(data.observacao || '');
       setCopiarEnderecoEntrega(data.copiarEnderecoEntrega || false);
     },
     [
@@ -85,6 +89,7 @@ export const EnderecoCobrancaProvider: React.FC<{ children: ReactNode }> = ({
       estadoCobranca,
       cepCobranca,
       paisCobranca,
+      observacaoCobranca,
       copiarEnderecoEntrega,
     ]
   );
@@ -100,6 +105,9 @@ export const EnderecoCobrancaProvider: React.FC<{ children: ReactNode }> = ({
       !data.cep ||
       !data.pais
     ) {
+      toast.error(
+        'Para cadastro deve se ter todos os campos obrigatórios de endereço de cobrança preenchidos!'
+      );
       return false;
     }
     return true;
@@ -107,7 +115,7 @@ export const EnderecoCobrancaProvider: React.FC<{ children: ReactNode }> = ({
 
   const handleSalvarEnderecoCobranca = (objectToSave: EnderecoType) => {
     if (objectToSave && validateEnderecoCobranca(objectToSave)) {
-      toast.error('Preencha todos os campos do endereço!');
+      toast.error('Preencha todos os campos do endereço de !');
       return;
     }
   };
@@ -134,6 +142,8 @@ export const EnderecoCobrancaProvider: React.FC<{ children: ReactNode }> = ({
       setCepCobranca,
       paisCobranca,
       setPaisCobranca,
+      observacaoCobranca,
+      setObservacaoCobranca,
       copiarEnderecoEntrega,
       setCopiarEnderecoEntrega,
       clearForm,
