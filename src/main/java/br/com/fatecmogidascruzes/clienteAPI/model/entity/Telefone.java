@@ -17,21 +17,19 @@ import lombok.*;
 public class Telefone extends Entidade {
 
     @NotNull(message = "Tipo de telefone não pode ser nulo")
-    private TipoTelefone tipo;
+    private TipoTelefone tipoTelefone;
 
-    @NotNull(message = "DDD não pode ser nulo")
     @NotBlank(message = "DDD não pode ser vazio")
     @Size(max = 2, message = "DDD não pode ter mais de 2 caracteres")
     private String ddd;
 
-    @NotNull(message = "Número não pode ser nulo")
     @NotBlank(message = "Número não pode ser vazio")
-    @Size(max = 9, message = "Número não pode ter mais de 9 caracteres")
+    @Size(max = 11, message = "Número não pode ter mais de 9 caracteres")
     private String numero;
 
     @Override
     public void validar() {
-        if (tipo == null) {
+        if (tipoTelefone == null) {
             throw new IllegalArgumentException("Tipo de telefone não pode ser nulo");
         }
         if (ddd == null || ddd.isEmpty()) {

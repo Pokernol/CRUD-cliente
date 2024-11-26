@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum TipoEndereco {
     ENTREGA_E_COBRANCA("Entrega e Cobrança"),
-    COBRANCA("Cobrança"),
+    COBRANCA("Cobranca"),
     ENTREGA("Entrega"),
     RESIDENCIAL("Residencial");
 

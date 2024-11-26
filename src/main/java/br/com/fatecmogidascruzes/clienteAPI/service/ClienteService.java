@@ -2,6 +2,7 @@ package br.com.fatecmogidascruzes.clienteAPI.service;
 
 import br.com.fatecmogidascruzes.clienteAPI.model.entity.Cliente;
 import br.com.fatecmogidascruzes.clienteAPI.repository.ClienteRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +18,12 @@ public class ClienteService {
         this.repository = repository;
     }
 
+    @Transactional
     public Cliente save(Cliente cliente) {
         return repository.save(cliente);
     }
 
+    @Transactional
     public List<Cliente> findAll() {
         return repository.findAll();
     }

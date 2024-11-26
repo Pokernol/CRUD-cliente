@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/api")
+@CrossOrigin(origins = "*")
 public class ClienteController {
 
     private final ClienteService clienteService;
@@ -21,15 +22,15 @@ public class ClienteController {
         this.clienteService = clienteService;
     }
 
-    @GetMapping
+    @GetMapping("/clientes")
     public ResponseEntity<List<Cliente>> getAllClientes() {
         List<Cliente> clientes = clienteService.findAll();
         return ResponseEntity.ok(clientes);
     }
 
-    @PostMapping
+    @PostMapping("/clientes")
     public ResponseEntity<Cliente> createCliente(@Valid @RequestBody Cliente cliente) {
         Cliente savedCliente = clienteService.save(cliente);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedCliente);
+        return ResponseEntity.status(   HttpStatus.CREATED).body(savedCliente);
     }
 }

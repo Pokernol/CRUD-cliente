@@ -16,15 +16,11 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = true)
 public class Usuario extends Entidade {
 
-    @NotNull(message = "Email não pode ser nulo")
     @NotBlank(message = "Email não pode ser vazio")
     @Email(message = "Email deve ser válido")
     private String email;
 
-    @NotNull(message = "Senha não pode ser nula")
-    @NotBlank(message = "Senha não pode ser vazia")
-    @Size(min = 8, message = "Senha deve ter pelo menos 8 caracteres")
-    @Size(max = 100, message = "Senha não pode ter mais de 100 caracteres")
+    @Size(min = 8, max = 100, message = "Senha não pode ter menos de 8 e mais de 100 caracteres")
     private String senha;
 
     public void alterarSenha(String novaSenha) {

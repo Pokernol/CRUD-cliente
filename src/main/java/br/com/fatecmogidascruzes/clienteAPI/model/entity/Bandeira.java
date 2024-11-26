@@ -15,7 +15,6 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = false)
 public class Bandeira extends Entidade {
 
-    @NotNull(message = "Descrição da bandeira não pode ser nula")
     @NotBlank(message = "Descrição da bandeira não pode ser vazia")
     @Size(max = 50, message = "Descrição da bandeira não pode ter mais de 100 caracteres")
     private String descricao;

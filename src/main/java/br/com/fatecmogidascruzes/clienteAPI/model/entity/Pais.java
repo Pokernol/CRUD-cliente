@@ -14,12 +14,11 @@ import lombok.*;
 @AllArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 public class Pais extends Entidade {
-    @NotNull(message = "Nome do país não pode ser nulo")
+
     @NotBlank(message = "Nome do país não pode ser vazio")
     @Size(max = 100, message = "Nome do país não pode ter mais de 100 caracteres")
     private String nome;
 
-    @NotNull(message = "Sigla do país não pode ser nula")
     @NotBlank(message = "Sigla do país não pode ser vazia")
     @Size(max = 2, message = "Sigla do país não pode ter mais de 2 caracteres")
     private String sigla;

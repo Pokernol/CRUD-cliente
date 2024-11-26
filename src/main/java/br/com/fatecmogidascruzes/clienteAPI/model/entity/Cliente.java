@@ -2,6 +2,7 @@ package br.com.fatecmogidascruzes.clienteAPI.model.entity;
 
 import br.com.fatecmogidascruzes.clienteAPI.model.enums.Genero;
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -20,7 +21,6 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = false)
 public class Cliente extends Entidade {
 
-    @NotNull(message = "Nome não pode ser nulo")
     @NotBlank(message = "Nome não pode ser vazio")
     @Size(max = 100, message = "Nome não pode ter mais de 100 caracteres")
     private String nome;
@@ -28,12 +28,10 @@ public class Cliente extends Entidade {
     @NotNull(message = "Data de nascimento não pode ser nula")
     private LocalDate dataNascimento;
 
-    @NotNull(message = "Email não pode ser nulo")
     @NotBlank(message = "Email não pode ser vazio")
     @Email(message = "Email deve ser válido")
     private String email;
 
-    @NotNull(message = "CPF não pode ser nulo")
     @NotBlank(message = "CPF não pode ser vazio")
     private String cpf;
 
@@ -42,16 +40,22 @@ public class Cliente extends Entidade {
     @NotNull(message = "Gênero não pode ser nulo")
     private Genero genero;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @Valid
     @JoinColumn(name = "cliente_id")
+    @NotNull(message = "Cliente deve ter pelo menos um endereço")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Endereco> enderecos = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @Valid
     @JoinColumn(name = "cliente_id")
+    @NotNull(message = "Cliente deve ter pelo menos um cartão")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Cartao> cartoes = new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @Valid
     @JoinColumn(name = "cliente_id")
+    @NotNull(message = "Cliente deve ter pelo menos um telefone")
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Telefone> telefones = new ArrayList<>();
 
     public void adicionarEndereco(Endereco endereco) {
@@ -68,7 +72,7 @@ public class Cliente extends Entidade {
         if (telefone == null) {
             throw new IllegalArgumentException("Telefone não pode ser nulo");
         }
-        if (telefones.stream().anyMatch(t -> t.getTipo() == telefone.getTipo() && t.getNumero().equals(telefone.getNumero()))) {
+        if (telefones.stream().anyMatch(t -> t.getTipoTelefone() == telefone.getTipoTelefone() && t.getNumero().equals(telefone.getNumero()))) {
             throw new IllegalArgumentException("Já existe um telefone do mesmo tipo e número");
         }
         this.telefones.add(telefone);

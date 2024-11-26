@@ -1,6 +1,7 @@
 package br.com.fatecmogidascruzes.clienteAPI.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -14,17 +15,14 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = false)
 public class Cartao extends Entidade {
 
-    @NotNull(message = "Número do cartão não pode ser nulo")
     @NotBlank(message = "Número do cartão não pode ser vazio")
-    @Size(max = 16, message = "Número do cartão não pode ter mais de 16 caracteres")
+    @Size(max = 19, message = "Número do cartão não pode ter mais de 16 caracteres")
     private String numero;
 
-    @NotNull(message = "Nome impresso no cartão não pode ser nulo")
     @NotBlank(message = "Nome impresso no cartão não pode ser vazio")
     @Size(max = 100, message = "Nome impresso no cartão não pode ter mais de 100 caracteres")
     private String nomeImpresso;
 
-    @NotNull(message = "CVV não pode ser nulo")
     @NotBlank(message = "CVV não pode ser vazio")
     @Size(max = 3, message = "CVV não pode ter mais de 3 caracteres")
     private String cvv;
@@ -32,6 +30,7 @@ public class Cartao extends Entidade {
     @NotNull(message = "Preferencial não pode ser nulo")
     private Boolean isPreferencial;
 
+    @Valid
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "bandeira_id")
     private Bandeira bandeira;

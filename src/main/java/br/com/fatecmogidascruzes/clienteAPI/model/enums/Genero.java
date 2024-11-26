@@ -3,9 +3,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum Genero {
-    MASCULINO("M"),
-    FEMININO("F"),
-    OUTRO("O");
+    MASCULINO("masculino"),
+    FEMININO("feminino"),
+    OUTRO("outros");
 
     private final String codigo;
 
