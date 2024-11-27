@@ -7,13 +7,16 @@ import React, {
   useState,
 } from 'react';
 import { toast } from 'react-toastify';
-import { EnderecoType } from '../EnderecoEntregaContext/types';
+import { EnderecoType, paisType } from '../EnderecoEntregaContext/types';
 import { EnderecoCobrancaContextType } from './types';
 
 const EnderecoCobrancaContext = createContext(
   {} as EnderecoCobrancaContextType
 );
 
+const brasil: paisType = { nome: 'Brasil', sigla: 'BR' };
+
+// eslint-disable-next-line react-refresh/only-export-components
 export const useEnderecoCobrancaContext = () =>
   useContext(EnderecoCobrancaContext);
 
@@ -30,7 +33,7 @@ export const EnderecoCobrancaProvider: React.FC<{ children: ReactNode }> = ({
   const [cidadeCobranca, setCidadeCobranca] = useState<string>('');
   const [estadoCobranca, setEstadoCobranca] = useState<string>('');
   const [cepCobranca, setCepCobranca] = useState<string>('');
-  const [paisCobranca, setPaisCobranca] = useState<string>('');
+  const [paisCobranca, setPaisCobranca] = useState<paisType>(brasil);
   const [observacaoCobranca, setObservacaoCobranca] = useState<string>('');
   const [copiarEnderecoEntrega, setCopiarEnderecoEntrega] =
     useState<boolean>(false);
@@ -45,56 +48,27 @@ export const EnderecoCobrancaProvider: React.FC<{ children: ReactNode }> = ({
     setCidadeCobranca('');
     setEstadoCobranca('');
     setCepCobranca('');
-    setPaisCobranca('');
+    setPaisCobranca(brasil);
     setObservacaoCobranca('');
     setCopiarEnderecoEntrega(false);
-  }, [
-    id,
-    tipoLogradouroCobranca,
-    logradouroCobranca,
-    numeroCobranca,
-    complementoCobranca,
-    bairroCobranca,
-    cidadeCobranca,
-    estadoCobranca,
-    cepCobranca,
-    paisCobranca,
-    observacaoCobranca,
-    copiarEnderecoEntrega,
-  ]);
+  }, []);
 
-  const fillForm = useCallback(
-    (data: EnderecoType) => {
-      setId(data.id || '');
-      setTipoLogradouroCobranca(data.tipoLogradouro);
-      setLogradouroCobranca(data.logradouro);
-      setNumeroCobranca(data.numero);
-      setComplementoCobranca(data.complemento);
-      setBairroCobranca(data.bairro);
-      setCidadeCobranca(data.cidade);
-      setEstadoCobranca(data.estado);
-      setCepCobranca(data.cep);
-      setPaisCobranca(data.pais);
-      setObservacaoCobranca(data.observacao || '');
-      setCopiarEnderecoEntrega(data.copiarEnderecoEntrega || false);
-    },
-    [
-      id,
-      tipoLogradouroCobranca,
-      logradouroCobranca,
-      numeroCobranca,
-      complementoCobranca,
-      bairroCobranca,
-      cidadeCobranca,
-      estadoCobranca,
-      cepCobranca,
-      paisCobranca,
-      observacaoCobranca,
-      copiarEnderecoEntrega,
-    ]
-  );
+  const fillForm = useCallback((data: EnderecoType) => {
+    setId(data.id || '');
+    setTipoLogradouroCobranca(data.tipoLogradouro);
+    setLogradouroCobranca(data.logradouro);
+    setNumeroCobranca(data.numero);
+    setComplementoCobranca(data.complemento);
+    setBairroCobranca(data.bairro);
+    setCidadeCobranca(data.cidade);
+    setEstadoCobranca(data.estado);
+    setCepCobranca(data.cep);
+    setPaisCobranca(data.pais);
+    setObservacaoCobranca(data.observacao || '');
+    setCopiarEnderecoEntrega(data.copiarEnderecoEntrega || false);
+  }, []);
 
-  const validateEnderecoCobranca = (data: EnderecoType) => {
+  const validateEnderecoCobranca = useCallback((data: EnderecoType) => {
     if (
       !data.tipoLogradouro ||
       !data.logradouro ||
@@ -111,14 +85,7 @@ export const EnderecoCobrancaProvider: React.FC<{ children: ReactNode }> = ({
       return false;
     }
     return true;
-  };
-
-  const handleSalvarEnderecoCobranca = (objectToSave: EnderecoType) => {
-    if (objectToSave && validateEnderecoCobranca(objectToSave)) {
-      toast.error('Preencha todos os campos do endereço de !');
-      return;
-    }
-  };
+  }, []);
 
   const values = useMemo(
     () => ({
@@ -149,7 +116,6 @@ export const EnderecoCobrancaProvider: React.FC<{ children: ReactNode }> = ({
       clearForm,
       fillForm,
       validateEnderecoCobranca,
-      handleSalvarEnderecoCobranca,
     }),
     [
       id,
@@ -163,6 +129,7 @@ export const EnderecoCobrancaProvider: React.FC<{ children: ReactNode }> = ({
       cepCobranca,
       paisCobranca,
       copiarEnderecoEntrega,
+      observacaoCobranca,
     ]
   );
 

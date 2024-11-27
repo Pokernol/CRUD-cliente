@@ -1,11 +1,11 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useTelefoneContext } from '../../../context/TelefoneContext';
 
 const ModalExcluirTelefone: React.FC = () => {
   const { handleExcluirTelefone, indexExcluir } = useTelefoneContext();
-  const handleExcluir = useCallback(() => {
+  const handleExcluir = () => {
     handleExcluirTelefone(indexExcluir);
-  }, [indexExcluir]);
+  };
   return (
     <div
       className="modal"

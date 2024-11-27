@@ -45,8 +45,10 @@ const FormEnderecoCobranca: React.FC = () => {
               id="pais"
               className="form-control"
               placeholder="Digite o país"
-              value={paisCobranca}
-              onChange={(e) => setPaisCobranca(e.target.value)}
+              value={paisCobranca.nome}
+              onChange={(e) =>
+                setPaisCobranca({ nome: e.target.value, sigla: 'BR' })
+              }
             />
           </div>
           <div className="col-md-1">

@@ -1,10 +1,11 @@
+import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Navbar from '../components/Navbar';
 import CadastroClienteProvider from './cadastro-cliente';
-import HomeProvider from './home';
+import HomeProvider from './Home';
 import ListarClientesProvider from './listar-clientes';
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Router>
+      <BrowserRouter>
         <Navbar />
         <div className="container-fluid">
           <Routes>
@@ -28,7 +29,7 @@ function App() {
           </Routes>
         </div>
         <ToastContainer position="bottom-right" />
-      </Router>
+      </BrowserRouter>
     </QueryClientProvider>
   );
 }

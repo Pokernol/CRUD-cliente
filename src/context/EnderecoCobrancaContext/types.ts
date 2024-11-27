@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { EnderecoType } from '../EnderecoEntregaContext/types';
+import { EnderecoType, paisType } from '../EnderecoEntregaContext/types';
 
 export type EnderecoCobrancaContextType = {
   id: string;
@@ -20,8 +20,8 @@ export type EnderecoCobrancaContextType = {
   setEstadoCobranca: Dispatch<SetStateAction<string>>;
   cepCobranca: string;
   setCepCobranca: Dispatch<SetStateAction<string>>;
-  paisCobranca: string;
-  setPaisCobranca: Dispatch<SetStateAction<string>>;
+  paisCobranca: paisType;
+  setPaisCobranca: Dispatch<SetStateAction<paisType>>;
   observacaoCobranca: string;
   setObservacaoCobranca: Dispatch<SetStateAction<string>>;
   copiarEnderecoEntrega: boolean;
@@ -29,5 +29,4 @@ export type EnderecoCobrancaContextType = {
   clearForm: () => void;
   fillForm: (data: EnderecoType) => void;
   validateEnderecoCobranca: (data: EnderecoType) => boolean;
-  handleSalvarEnderecoCobranca: (data: EnderecoType) => void;
 };

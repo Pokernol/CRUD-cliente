@@ -74,8 +74,8 @@ const FormEnderecoEntrega: React.FC = () => {
               id="pais"
               className="form-control"
               placeholder="Digite o país"
-              value={pais}
-              onChange={(e) => setPais(e.target.value)}
+              value={pais.nome}
+              onChange={(e) => setPais({ nome: e.target.value, sigla: 'BR' })}
             />
           </div>
           <div className="col-md-1">

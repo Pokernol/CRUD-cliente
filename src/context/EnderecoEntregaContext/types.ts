@@ -1,5 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 
+export type paisType = { nome: string; sigla: string };
+
 export type EnderecoType = {
   id?: string;
   tipoLogradouro: string;
@@ -10,7 +12,7 @@ export type EnderecoType = {
   cidade: string;
   estado: string;
   cep: string;
-  pais: string;
+  pais: paisType;
   observacao?: string;
   copiarEnderecoEntrega?: boolean;
 };
@@ -34,12 +36,11 @@ export type EnderecoEntregaContextType = {
   setEstado: Dispatch<SetStateAction<string>>;
   cep: string;
   setCep: Dispatch<SetStateAction<string>>;
-  pais: string;
-  setPais: Dispatch<SetStateAction<string>>;
+  pais: paisType;
+  setPais: Dispatch<SetStateAction<paisType>>;
   observacao: string;
   setObservacao: Dispatch<SetStateAction<string>>;
   clearForm: () => void;
   fillForm: (data: EnderecoType) => void;
-  validateEndereco: () => boolean;
-  handleSalvarEndereco: (data: EnderecoType) => void;
+  validateEndereco: (data: EnderecoType) => boolean;
 };

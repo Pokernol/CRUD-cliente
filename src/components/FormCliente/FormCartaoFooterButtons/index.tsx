@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { useCartaoContext } from '../../../context/CartaoContext';
 
 const FormCartaoFooterButtons: React.FC = () => {

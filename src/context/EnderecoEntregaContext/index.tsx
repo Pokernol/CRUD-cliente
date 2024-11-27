@@ -7,8 +7,10 @@ import React, {
   useState,
 } from 'react';
 import { toast } from 'react-toastify';
-import { EnderecoEntregaContextType, EnderecoType } from './types';
+import { EnderecoEntregaContextType, EnderecoType, paisType } from './types';
 const EnderecoEntregaContext = createContext({} as EnderecoEntregaContextType);
+
+const brasil: paisType = { nome: 'Brasil', sigla: 'BR' };
 
 export const useEnderecoEntregaContext = () =>
   useContext(EnderecoEntregaContext);
@@ -25,7 +27,7 @@ export const EnderecoEntregaProvider: React.FC<{ children: ReactNode }> = ({
   const [cidade, setCidade] = useState<string>('');
   const [estado, setEstado] = useState<string>('');
   const [cep, setCep] = useState<string>('');
-  const [pais, setPais] = useState<string>('');
+  const [pais, setPais] = useState<paisType>(brasil);
   const [observacao, setObservacao] = useState<string>('');
 
   const clearForm = useCallback(() => {
@@ -38,7 +40,7 @@ export const EnderecoEntregaProvider: React.FC<{ children: ReactNode }> = ({
     setCidade('');
     setEstado('');
     setCep('');
-    setPais('');
+    setPais(brasil);
     setObservacao('');
   }, [
     id,
@@ -83,16 +85,16 @@ export const EnderecoEntregaProvider: React.FC<{ children: ReactNode }> = ({
     ]
   );
 
-  const validateEndereco = () => {
+  const validateEndereco = useCallback((data: EnderecoType) => {
     if (
-      !tipoLogradouro ||
-      !logradouro ||
-      !numero ||
-      !bairro ||
-      !cidade ||
-      !estado ||
-      !cep ||
-      !pais
+      !data.tipoLogradouro ||
+      !data.logradouro ||
+      !data.numero ||
+      !data.bairro ||
+      !data.cidade ||
+      !data.estado ||
+      !data.cep ||
+      !data.pais
     ) {
       toast.error(
         'Para cadastro deve se ter todos os campos obrigatórios de endereço de entrega preenchidos!'
@@ -100,14 +102,7 @@ export const EnderecoEntregaProvider: React.FC<{ children: ReactNode }> = ({
       return false;
     }
     return true;
-  };
-
-  const handleSalvarEndereco = (objectToSave: EnderecoType) => {
-    if (objectToSave && validateEndereco()) {
-      toast.error('Preencha todos os campos do endereço de entrega!');
-      return;
-    }
-  };
+  }, []);
 
   const values = useMemo(
     () => ({
@@ -136,7 +131,6 @@ export const EnderecoEntregaProvider: React.FC<{ children: ReactNode }> = ({
       clearForm,
       fillForm,
       validateEndereco,
-      handleSalvarEndereco,
     }),
     [
       id,

@@ -19,7 +19,9 @@ export const TelefoneProvider: React.FC<{ children: ReactNode }> = ({
   const [tipoTelefone, setTipoTelefone] = useState<string>('');
   const [ddd, setDdd] = useState<string>('');
   const [numero, setNumero] = useState<string>('');
-  const [telefones, setTelefones] = useState<TelefoneType[]>([]);
+  const [telefones, setTelefones] = useState<TelefoneType[]>(
+    [] as TelefoneType[]
+  );
   const [indexExcluir, setIndexExcluir] = React.useState<number>(-1);
 
   const clearForm = useCallback(() => {

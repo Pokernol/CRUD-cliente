@@ -1,11 +1,11 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { useCartaoContext } from '../../../context/CartaoContext';
 
 const ModalExcluirCartao: React.FC = () => {
   const { handleExcluirCartao, indexExcluir } = useCartaoContext();
-  const handleExcluir = useCallback(() => {
+  const handleExcluir = () => {
     handleExcluirCartao(indexExcluir);
-  }, [indexExcluir]);
+  };
   return (
     <div
       className="modal"

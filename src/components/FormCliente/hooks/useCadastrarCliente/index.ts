@@ -1,5 +1,6 @@
 import { useMemo } from 'react';
 import { useMutation } from 'react-query';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useClienteApi } from '../../../../apis/hooks/clienteApi';
 import { useCartaoContext } from '../../../../context/CartaoContext';
@@ -7,6 +8,7 @@ import { useEnderecoCobrancaContext } from '../../../../context/EnderecoCobranca
 import { useEnderecoEntregaContext } from '../../../../context/EnderecoEntregaContext';
 import { useIndentificacaoClienteContext } from '../../../../context/IndentificacaoClienteContext';
 import { useTelefoneContext } from '../../../../context/TelefoneContext';
+import { clienteType } from './types';
 
 export const useCadastrarCliente = () => {
   const { id, nome, dataNascimento, email, cpf, genero } =
@@ -43,7 +45,9 @@ export const useCadastrarCliente = () => {
 
   const { api } = useClienteApi();
 
-  async function save(values: any) {
+  const navigate = useNavigate();
+
+  async function save(values: clienteType) {
     console.log('values', values);
     const result = await api[values?.id ? 'put' : 'post'](
       `/clientes${values?.id ? `/${values.id}` : ''}`,
@@ -70,10 +74,7 @@ export const useCadastrarCliente = () => {
           bairro,
           cidade,
           estado,
-          pais: {
-            nome: pais,
-            sigla: 'BR',
-          },
+          pais: pais,
           tipo: 'Entrega',
           observacao,
           enderecoEntregaIgualCobranca: copiarEnderecoEntrega,
@@ -87,10 +88,7 @@ export const useCadastrarCliente = () => {
           bairro: bairroCobranca,
           cidade: cidadeCobranca,
           estado: estadoCobranca,
-          pais: {
-            nome: paisCobranca,
-            sigla: 'BR',
-          },
+          pais: paisCobranca,
           tipo: 'Cobranca',
           observacao: observacaoCobranca,
         },
@@ -126,12 +124,15 @@ export const useCadastrarCliente = () => {
       paisCobranca,
       observacaoCobranca,
       copiarEnderecoEntrega,
+      telefones,
+      cartoes,
     ]
   );
 
   return useMutation(() => save({ ...objectToSave }), {
     onSuccess: () => {
       toast.success('Cliente cadastrado com sucesso');
+      navigate('/listar-clientes');
     },
     onError: () => {
       toast.error('Erro ao cadastrar cliente');

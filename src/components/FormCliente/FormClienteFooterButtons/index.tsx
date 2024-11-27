@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 import { toast } from 'react-toastify';
 import { useCartaoContext } from '../../../context/CartaoContext';
 import { useEnderecoCobrancaContext } from '../../../context/EnderecoCobrancaContext';
@@ -12,10 +12,8 @@ const FormClienteFooterButtons = () => {
     clearForm: IndentificacaoClienteClearForm,
     validarIndentificacaoCliente,
   } = useIndentificacaoClienteContext();
-  const { clearForm: EnderecoEntregaClearForm, validateEndereco } =
-    useEnderecoEntregaContext();
-  const { clearForm: EnderecoCobrancaClearForm, validateEnderecoCobranca } =
-    useEnderecoCobrancaContext();
+  const { clearForm: EnderecoEntregaClearForm } = useEnderecoEntregaContext();
+  const { clearForm: EnderecoCobrancaClearForm } = useEnderecoCobrancaContext();
   const { clearForm: TelefoneClearForm, validarListaTelefones } =
     useTelefoneContext();
   const { clearForm: CartaoClearForm, validarListaCartoes } =
@@ -24,12 +22,6 @@ const FormClienteFooterButtons = () => {
   const validarCampos = () => {
     let isValid = true;
     if (validarIndentificacaoCliente()) isValid = false;
-    console.log('isValid', isValid);
-
-    if (validateEndereco()) isValid = false;
-    console.log('isValid', isValid);
-
-    if (validateEnderecoCobranca()) isValid = false;
     console.log('isValid', isValid);
 
     if (validarListaTelefones()) isValid = false;
